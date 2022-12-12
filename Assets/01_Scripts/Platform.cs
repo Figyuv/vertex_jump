@@ -5,6 +5,7 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public float jumpForce = 10f;
+    public AudioClip jumpSFX;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -16,13 +17,13 @@ public class Platform : MonoBehaviour
                 Vector2 velocity = rb.velocity;
                 velocity.y = jumpForce;
                 rb.velocity = velocity;
+                GameManager.instance.PlaySFX(jumpSFX);
             }
         }
     }
     //destroy object after 2 seconds
     void Start()
     {
-        
         Destroy(gameObject, 10f);
     }
 
